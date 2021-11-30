@@ -1,13 +1,32 @@
 import java.util.Scanner;
 
 public class Main {
-
+	
+	static int randomGood() {
+		int min = 7;
+		int max = 10;
+		int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+		return random_int;
+	}
+	static int randomAverage() {
+		int min = 4;
+		int max = 10;
+		int random_int2 = (int)Math.floor(Math.random()*(max-min)+min);
+		return random_int2;
+	}
+	static int randomBad() {
+		int min = 1;
+		int max = 3;
+		int random_int3 = (int)Math.floor(Math.random()*(max-min+1)+min);
+		return random_int3;
+	}
+	
 	
 	
 	static void restart() throws InterruptedException{
 	Scanner scan = new Scanner(System.in);
-	Fighters AJ = new Fighters("Antony Joshua",9,4,4,7,8,100);
-	Fighters Tyson = new Fighters("Tyson Fury",8,9,9,7,7,100);
+	Fighters AJ = new Fighters("Antony Joshua",randomGood(),randomAverage(),randomAverage(),randomBad(),randomGood(),100);
+	Fighters Tyson = new Fighters("Tyson Fury",randomBad(),randomGood(),randomGood(),randomGood(),randomBad(),100);
 
 	System.out.println("##################");
 	System.out.println("  Select Fighter  ");
@@ -55,20 +74,95 @@ public class Main {
 		System.out.println("The boxing fight is: Player 1: Antony Joshua V Player 2: Tyson Fury");
 		System.out.println("###################################################################");
 		
-		AJ.powershot(AJ.power,   Tyson.power,  AJ.health, Tyson.health);
-		AJ.lightshot(AJ.light,   Tyson.light,  AJ.health, Tyson.health);
-		AJ.block(    AJ.defence, Tyson.defence,AJ.health, Tyson.health);
-		AJ.powershot(AJ.power,   Tyson.power,  AJ.health, Tyson.health);
+		
+//		AJ.lightshot(Tyson);
+		while(AJ.health > 0 && Tyson.health > 0) {
+			//Scanner getting user input
+			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^");
+			System.out.println(" Player 1 Select Fight Move: ");
+			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^");
+			System.out.println("1: Powershot");
+			System.out.println("2: Lightshot");
+			int fightMove = scan.nextInt();
+			
+			//Showing the user input
+			switch(fightMove) { 
+			case 1:
+				AJ.powershot(Tyson);
+			
+			break;
+			case 2:
+				AJ.lightshot(Tyson);
+				break;
+
+			}
+			//Scanner getting user input
+			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^");
+			System.out.println(" Player 2 Select Fight Move: ");
+			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^");
+			System.out.println("1: Powershot");
+			System.out.println("2: Lightshot");
+			int fightMove2 = scan.nextInt();
+			
+			//Showing the user input
+			switch(fightMove2) { 
+			case 1:
+				Tyson.powershot(AJ);
+			
+			break;
+			case 2:
+				Tyson.lightshot(AJ);
+				break;
+
+			}
+		}
+	
 	} 
 	if(userFighter == 2 && userFighter2 == 1) {
 		System.out.println("###################################################################");
 		System.out.println("The boxing fight is: Player 1: Tyson Fury V Player 2: Antony Joshua");
 		System.out.println("###################################################################");
 		
-		Tyson.powershot(Tyson.power,   AJ.power,   Tyson.health,   Tyson.health);
-		Tyson.lightshot(Tyson.light,   AJ.light,   Tyson.health,   Tyson.health);
-		Tyson.block(    Tyson.defence, AJ.defence, Tyson.health,   Tyson.health);
-		Tyson.powershot(Tyson.power,   AJ.power,   Tyson.health,   Tyson.health);
+		while(AJ.health > 0 && Tyson.health > 0) {
+			//Scanner getting user input
+			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^");
+			System.out.println(" Player 1 Select Fight Move: ");
+			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^");
+			System.out.println("1: Powershot");
+			System.out.println("2: Lightshot");
+			int fightMove = scan.nextInt();
+			
+			//Showing the user input
+			switch(fightMove) { 
+			case 1:
+				Tyson.powershot(AJ);
+			
+			break;
+			case 2:
+				Tyson.lightshot(AJ);
+				break;
+
+			}
+			//Scanner getting user input
+			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^");
+			System.out.println(" Player 2 Select Fight Move: ");
+			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^");
+			System.out.println("1: Powershot");
+			System.out.println("2: Lightshot");
+			int fightMove2 = scan.nextInt();
+			
+			//Showing the user input
+			switch(fightMove2) { 
+			case 1:
+				AJ.powershot(Tyson);
+			
+			break;
+			case 2:
+				AJ.lightshot(Tyson);
+				break;
+
+			}
+		}
 	}
 	
 	

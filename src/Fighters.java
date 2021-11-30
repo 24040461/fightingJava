@@ -18,42 +18,100 @@ public class Fighters {
 		health = Health;
 	}
 	
-	void powershot(int fighter1Pow,int fighter2Pow, int fighter1Health, int fighter2Health) throws InterruptedException {
-		if(fighter1Pow > fighter2Pow) {
-			fighter2Health -= 5;
-			Thread.sleep(500);
-			System.out.println("Player one landed a power shot, 'That was outragous': Player 2 HP " + fighter2Health + " /100");
+
+
+	void powershot(Fighters fighter2) throws InterruptedException {
+		
+
+		
+		if(this.power > fighter2.power) {
+			fighter2.health -= 5;
 			
+			System.out.println("\n");
+			System.out.println(this.name + " landed a power shot, 'That was outragous': " + fighter2.name + " HP " + fighter2.health + " /100");
+			int min = 1;
+			int max = 10;
+			int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+			int random_int2 = (int)Math.floor(Math.random()*(max-min+1)+min);
+			fighter2.power = random_int;
+			this.power = random_int2;
+			if(this.health <= 0){
+				System.out.println("\n");
+				System.out.println(this.name + " has been knocked out!!!!");
+			}
 			
 		} else {
-			fighter1Health -= 5;
-			Thread.sleep(500);
-			System.out.println("Player Two was to powerful for the shot, 'Simply Simply Lovely': Player 1 HP " + fighter1Health + " /100");
+			
+			this.health -= 5;
+			
+			System.out.println("\n");
+			System.out.println(fighter2.name + " was to powerful for the shot, 'Simply Simply Lovely': " + this.name +  " HP " + this.health + " /100");
+			int min = 1;
+			int max = 10;
+			int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+			int random_int2 = (int)Math.floor(Math.random()*(max-min+1)+min);
+			fighter2.power = random_int;
+			this.power = random_int2;
+			System.out.println(this.power);
+			System.out.println(fighter2.power);
+			if(fighter2.health < 0){
+				System.out.println("\n");
+				System.out.println(fighter2.name + " has been knocked out!!!!");
+			}
 		}
 	}
-	void lightshot(int fighter1Light , int fighter2Light, int fighter1Health , int fighter2Health) throws InterruptedException {
-		if(fighter1Light > fighter2Light) {
-			fighter2Health -= 5;
-			Thread.sleep(2000);
-			System.out.println("Player one landed a light shot: Player 2 HP " + fighter2Health + " /100");
-			
+	
+	
+	void lightshot(Fighters fighter2) throws InterruptedException {
+		if(this.light > fighter2.light) {
+			fighter2.health -= 5;
+			System.out.println("\n");
+			System.out.println(this.name + " landed a light shot: "+ fighter2.name + " HP " + fighter2.health + " /100");
+			int min = 1;
+			int max = 10;
+			int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+			int random_int2 = (int)Math.floor(Math.random()*(max-min+1)+min);
+			fighter2.light = random_int;
+			this.light = random_int2;
+			if(this.health <= 0){
+				System.out.println("\n");
+				System.out.println(this.name + " has been knocked out!!!!");
+			}
 		} else {
-			fighter1Health -= 5;
-			Thread.sleep(2000);
-			System.out.println("Player Two was to quick for the shot: Player 1 HP " + fighter1Health + " /100");
-		
+			this.health -= 5;
+			
+			System.out.println("\n");
+			System.out.println(fighter2.name +" was to quick for the shot: Player 1 HP " + this.health + " /100");
+			int min = 1;
+			int max = 10;
+			int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+			int random_int2 = (int)Math.floor(Math.random()*(max-min+1)+min);
+			fighter2.light = random_int;
+			this.light = random_int2;
+			if(fighter2.health < 0){
+				System.out.println("\n");
+				System.out.println(fighter2.name + " has been knocked out!!!!");
+			}
 		}
 		
 	}
-	void block(int fighter1Block, int fighter2Block, int fighter1Health, int fighter2Health) throws InterruptedException {
-		if(fighter1Block > fighter2Block) {
-			fighter2Health -= 5;
-			Thread.sleep(2000);
-			System.out.println("Player one blocked the shot: Player 2 HP" + fighter1Health + " /100");
+	void block(Fighters fighter2) throws InterruptedException {
+		if(this.defence > fighter2.defence) {
+			fighter2.defence -= 5;
+			
+			System.out.println(this.name + " blocked the shot: " + fighter2.name +" HP " + this.health + " /100");
 		} else {
-			fighter1Health -= 5;
-			Thread.sleep(2000);
-			System.out.println("Player Two went through the shot: Player 1 HP " + fighter1Health + " /100");
+			this.health -= 5;
+			
+			System.out.println(fighter2.name +" went through the shot: "+ this.name + " HP " + this.health + " /100");
+		}
+		
+		
+	}
+	void move(String move, Fighters fighter2) throws InterruptedException {
+		if(move.equals("powershot")) {
+			this.powershot(fighter2);
+			
 		}
 	}
 
